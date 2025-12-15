@@ -1,22 +1,22 @@
-# part1_file_unpicke.py
+# part1_file_unpickle.py
 
 import pickle as pkl
-from part1_file_pickle import Person
-
+from part1_file_pickle import Person  # 원래 Person 클래스를 임포트하지만 아래에서 덮어씌워짐
 
 if __name__ == "__main__":
-    # 피클링된 파일을 읽어올 떄에는 바이너리 읽기 모드로 읽어 온다.
-    with open("my_data.pkl","rb") as file:
+    # 피클링된 'my_data.pkl' 파일을 바이너리 읽기 모드로 열어 데이터를 로드한다.
+    with open("my_data.pkl", "rb") as file:
         data = pkl.load(file)
 
-    # 가져온 기능을 실행해보자
+    # 불러온 데이터의 'name' 값을 출력한다.
     print(data["name"])
 
+    # 'hong_person.pkl' 파일을 바이너리 읽기 모드로 열어 클래스를 로드한다.
+    with open("hong_person.pkl", "rb") as file:
+        Person = pkl.load(file)  # 피클에서 불러온 Person 클래스를 변수에 할당
 
-    with open("hong_person.pkl", "rb") as file: # hong_person.pkl이란 파일을 바이너리 일기모드로 읽어와서
-        Person = pkl.load(file) # Person을 정의하고
+    # 불러온 Person 클래스를 사용해 새로운 인스턴스 생성
+    hong = Person("김범준", 30)
 
-    hong = Person("김범준", 30) # 내용을 초기화 시키고
-    my = Person("지완", 29)
-    print(hong.introduce()) # 클래스 내부의 함수를 출력 시킨다.
-    print(my.introduce())
+    # 인스턴스의 introduce 메서드를 호출해 정보를 출력한다.
+    print(hong.introduce())
